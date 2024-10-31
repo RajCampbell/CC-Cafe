@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC Cafe</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 3px solid #e7e7e7;
+            background-color: Tan;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 25px 65px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: red;
+        }
+
+        li a.active {
+            color: Black;
+            background-color: Black;
+        }
+
+        body {
+           background-image: url('Cafe.png');
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .confirmation {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function submitFeedback(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Gather form data
+            const form = event.target;
+            const name = form['name'].value;
+            const feedback = form['feedback'].value;
+
+            // Create a confirmation message
+            const confirmationMessage = `
+                Thank you, ${name}!
+                Your feedback has been received: "${feedback}"
+            `;
+
+            // Display the confirmation message
+            const confirmationDiv = document.getElementById('confirmation');
+            confirmationDiv.innerText = confirmationMessage;
+            confirmationDiv.style.display = 'block';
+
+            // Clear the form
+            form.reset();
+        }
+    </script>
+</head>
+
+
+
+
+
+}
+</style>
+</head>
+<body>
+<div> <class="logo">
+    <a href="#">
+        <img src="CC logo.png" alt="CC Logo" style="width: 150px;">
+    </a>
+</class>
+    </div>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="CC Cafe About.html">About</a></li>
+        <li><a href="Order.html">Order Here</a></li>
+        <li><a href="Feedback.html">Feedback</a></li>
+    </ul>
+
+    <center>
+        <h1>Feedback</h1>
+    </center>
+
+    <div class="container">
+        <h2>We value your feedback!</h2>
+        <form onsubmit="submitFeedback(event)">
+                        <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div id="confirmation" class="confirmation"></div>
+    </div>
+
+</body>
+
+</html>

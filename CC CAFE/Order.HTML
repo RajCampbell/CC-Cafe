@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC Cafe</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 3px solid #e7e7e7;
+            background-color: Tan;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: Black;
+            text-align: center;
+            padding: 25px 65px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: red;
+        }
+
+        li a.active {
+            color: Black;
+            background-color: Black;
+        }
+
+        body {
+            background-image: url('Cafe.png');
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .confirmation {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+        }
+
+        .total {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        const prices = {
+            coffee: {
+                espresso: { hot: 750, iced: 850 },
+                americano: { hot: 600, iced: 700 },
+                mocha: { hot: 600, iced: 700 },
+                latte: { hot: 750, iced: 860 },
+                cappuccino: { hot: 750 }
+            },
+            tea: {
+                "black-tea": 400,
+                "green-tea": 500,
+                "herbal-tea": 500,
+                "chai-tea": 500
+            },
+            pastry: {
+                croissant: 450,
+                muffin: 350,
+                "cheese-danish": 400,
+                scone: 400,
+                brownie: 300
+            },
+            sandwich: {
+                turkey: 800,
+                ham: 800,
+                veggie: 500,
+                chicken: 700,
+                tuna: 700
+            }
+        };
+
+        function showConfirmation(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Gather form data
+            const form = event.target;
+            const coffeeType = form['coffee-type'].value;
+            const teaType = form['tea-type'].value;
+            const pastryType = form['pastry-type'].value;
+            const sandwichType = form['sandwich-type'].value;
+            const size = form['size'].value;
+            const style = form['style'].value;
+            const quantity = parseInt(form['quantity'].value);
+            const name = form['name'].value;
+            const email = form['email'].value;
+
+            // Calculate total
+            let total = 0;
+            if (coffeeType) {
+                total += prices.coffee[coffeeType][style] || prices.coffee[coffeeType];
+            }
+            if (teaType) {
+                total += prices.tea[teaType];
+            }
+            if (pastryType) {
+                total += prices.pastry[pastryType];
+            }
+            if (sandwichType) {
+                total += prices.sandwich[sandwichType];
+            }
+            total *= quantity; // Total cost for quantity
+
+            // Create a confirmation message
+            const confirmationMessage = `
+                Thank you, ${name}!
+                Your order details:
+                Coffee: ${coffeeType ? coffeeType : "None"}
+                Tea: ${teaType ? teaType : "None"}
+                Pastry: ${pastryType ? pastryType : "None"}
+                Sandwich: ${sandwichType ? sandwichType : "None"}
+                Size: ${size ? size : "None"}
+                Style: ${style ? style : "None"}
+                Quantity: ${quantity}
+                Total: $${total}
+                Email: ${email}
+            `;
+
+            // Display the confirmation message
+            const confirmationDiv = document.getElementById('confirmation');
+            confirmationDiv.innerText = confirmationMessage;
+            confirmationDiv.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+<background-image: url('Cafe.png');
+}
+
+
+}
+</style>
+</head>
+<body>
+<div> <class="logo">
+    <a href="#">
+        <img src="CC logo.png" alt="CC Logo" style="width: 150px;">
+    </a>
+</class>
+
+</div>
+
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="CC Cafe About.html">About</a></li>
+    <li><a href="Order.html">Order Here</a></li>
+    <li><a href="Feedback.html">Feedback</a></li>
+</ul>
+
+<center><h1>Order Here</h1></center>
+
+<!-- Coffee, Teas, Pastries, and Sandwiches Order Form -->
+<div class="container">
+    <h2>Order Your Coffee, Teas, Pastries, and Sandwiches</h2>
+    <form onsubmit="showConfirmation(event)">
+        <label for="coffee-type">Choose Your Coffee:</label>
+        <select id="coffee-type" name="coffee-type">
+            <option value="" disabled selected>Select a coffee</option>
+            <option value="espresso">Espresso</option>
+            <option value="americano">Americana</option>
+            <option value="mocha">Mocha</option>
+            <option value="latte">Latte</option>
+            <option value="cappuccino">Cappuccino</option>
+        </select>
+
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+            <option value="" disabled selected>Select a size</option>
+            <option value="large">Large</option>
+            <option value="medium">Medium</option>
+            <option value="small">Small</option>
+        </select>
+
+        <label for="style">Style:</label>
+        <select id="style" name="style">
+            <option value="" disabled selected>Select a style</option>
+            <option value="hot">Hot</option>
+            <option value="iced">Iced</option>
+        </select>
+
+        <label for="tea-type">Choose Your Tea:</label>
+        <select id="tea-type" name="tea-type">
+            <option value="" disabled selected>Select a tea</option>
+            <option value="black-tea">Black Tea</option>
+            <option value="green-tea">Green Tea</option>
+            <option value="herbal-tea">Herbal Tea</option>
+            <option value="chai-tea">Chai Tea</option>
+        </select>
+
+        <label for="pastry-type">Choose Your Pastry:</label>
+        <select id="pastry-type" name="pastry-type">
+            <option value="" disabled selected>Select a pastry</option>
+            <option value="croissant">Croissant</option>
+            <option value="muffin">Muffin</option>
+            <option value="cheese-danish">Cheese Danish</option>
+            <option value="scone">Scone</option>
+            <option value="brownie">Brownie</option>
+        </select>
+
+        <label for="sandwich-type">Choose Your Sandwich:</label>
+        <select id="sandwich-type" name="sandwich-type">
+            <option value="" disabled selected>Select a sandwich</option>
+            <option value="turkey">Turkey Sandwich</option>
+            <option value="ham">Ham Sandwich</option>
+            <option value="veggie">Veggie Sandwich</option>
+            <option value="chicken">Chicken Sandwich</option>
+            <option value="tuna">Tuna Sandwich</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Place Order</button>
+    </form>
+
+    <!-- Confirmation Message -->
+    <div id="confirmation" class="confirmation"></div>
+</div>
+
+</body>
+</html>
+
